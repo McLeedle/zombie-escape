@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ca3ids5casn1m"]
+[gd_scene load_steps=12 format=3 uid="uid://ca3ids5casn1m"]
 
 [ext_resource type="Material" uid="uid://drm3clvqpis42" path="res://Assets/Models/Terrain/TerrainMaterial.tres" id="1_nfrrq"]
 [ext_resource type="ArrayMesh" uid="uid://cndcxj6gf0smr" path="res://Assets/Models/Terrain/Terrain.obj" id="2_pthys"]
@@ -16,6 +16,12 @@ data = PackedVector3Array(-40.492, 6.502, 49.8561, -40.8033, 5.8586, 51.8613, -4
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nddha"]
 size = Vector3(2.91895, 20.0056, 131.15)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_521sk"]
+bg_color = Color(0.0253638, 0.0253638, 0.0253638, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sh62x"]
+font_size = 50
 
 [node name="Main" type="Node3D"]
 
@@ -317,3 +323,77 @@ shape = SubResource("BoxShape3D_nddha")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7256, 0.0949943, -4.84198)
 walk_speed = 4.0
 run_speed = 5.0
+
+[node name="WinScreen" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_521sk")
+
+[node name="Label" type="Label" parent="WinScreen"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 115.0
+offset_right = 862.0
+offset_bottom = 298.0
+text = "You Win!"
+label_settings = SubResource("LabelSettings_sh62x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WinScreen"]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 361.0
+offset_right = 756.0
+offset_bottom = 536.0
+
+[node name="PlayAgainButton" type="Button" parent="WinScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Play Again"
+
+[node name="QuitButton" type="Button" parent="WinScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+
+[node name="LoseScreen" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_521sk")
+
+[node name="Label" type="Label" parent="LoseScreen"]
+layout_mode = 0
+offset_left = 287.0
+offset_top = 115.0
+offset_right = 862.0
+offset_bottom = 298.0
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_sh62x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoseScreen"]
+layout_mode = 0
+offset_left = 390.0
+offset_top = 361.0
+offset_right = 756.0
+offset_bottom = 536.0
+
+[node name="PlayAgainButton" type="Button" parent="LoseScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Play Again"
+
+[node name="QuitButton" type="Button" parent="LoseScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Quit"
