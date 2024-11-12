@@ -65,13 +65,6 @@ func _physics_process(delta: float) -> void:
 	camera.rotation.x = clamp(camera.rotation.x, -1.5, 1.5)
 	camera_look_input = Vector2.ZERO
 	
-	# Show/Hide Mouse
-	#if Input.is_action_just_pressed("ui_cancel"):
-	#	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-	#		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#	else:
-	#		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		camera_look_input = event.relative

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=4 format=3 uid="uid://dwkn62rwmlmep"]
+
+[ext_resource type="Texture2D" uid="uid://cwlffmrx145nw" path="res://Items/Icons/keychain_icon.png" id="1_kxr4d"]
+[ext_resource type="Script" path="res://Items/Item.gd" id="2_qce8v"]
+[ext_resource type="PackedScene" uid="uid://dqpft3sjggdwh" path="res://Items/World Items/WorldItem_Keys.tscn" id="3_d64ag"]
+
+[resource]
+script = ExtResource("2_qce8v")
+display_name = "Keys"
+icon = ExtResource("1_kxr4d")
+max_stack_size = 1
+world_item_scene = ExtResource("3_d64ag")
+can_drop = false

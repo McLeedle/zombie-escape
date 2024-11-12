@@ -55,7 +55,7 @@ func _on_pressed() -> void:
 		remove_item()
 		
 func drop_item():
-	if item == null:
+	if item == null or not item.can_drop:
 		return
 	
 	var world_item = item.world_item_scene.instantiate()
