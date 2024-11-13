@@ -17,7 +17,8 @@ var is_running : bool = false
 var camera_look_input : Vector2
 
 @onready var camera : Camera3D = get_node("Camera3D")
-@onready var gravity :float = ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_modifier
+@onready var gravity : float = ProjectSettings.get_setting("physics/3d/default_gravity") * gravity_modifier
+@onready var flashlight_light : SpotLight3D = get_node("Camera3D/flashlight/SpotLight3D")
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -30,6 +31,12 @@ func _physics_process(delta: float) -> void:
 	# Jumping
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_force
+	
+	if Input.is_action_just_pressed("flashlight"):
+		if flashlight_light.visible == true:
+			flashlight_light.visible = false
+		else:
+			flashlight_light.visible = true
 		
 	# Movement
 	var move_input = Input.get_vector("move_left","move_right","move_forward","move_backward")

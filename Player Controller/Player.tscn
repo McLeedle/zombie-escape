@@ -1,18 +1,19 @@
-[gd_scene load_steps=10 format=3 uid="uid://6v75ptgvchje"]
+[gd_scene load_steps=11 format=3 uid="uid://6v75ptgvchje"]
 
 [ext_resource type="Script" path="res://Player Controller/PlayerController.gd" id="1_6dyqq"]
 [ext_resource type="Script" path="res://Player Controller/Interaction/InteractionController.gd" id="2_yxulp"]
 [ext_resource type="Script" path="res://Inventory/Inventory.gd" id="3_q17cw"]
 [ext_resource type="PackedScene" uid="uid://cbkrq4u8m0qvg" path="res://Inventory/InventorySlot.tscn" id="4_fm5wy"]
 [ext_resource type="Script" path="res://Player Controller/Pausing/Pause.gd" id="5_xgptq"]
+[ext_resource type="PackedScene" uid="uid://b1j28fjrm3kah" path="res://Assets/Models/Flashlight/flashlight.glb" id="6_e7deo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6fhfl"]
 radius = 0.3
 height = 1.8
 
 [sub_resource type="LabelSettings" id="LabelSettings_hkfxu"]
-font_size = 24
-outline_size = 5
+font_size = 30
+outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_3kclr"]
@@ -44,16 +45,25 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -213.5
-offset_top = -47.5
-offset_right = 213.5
-offset_bottom = 47.5
+offset_left = -211.0
+offset_top = 8.0
+offset_right = 216.0
+offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "[E] Interact"
 label_settings = SubResource("LabelSettings_hkfxu")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="flashlight" parent="Camera3D" instance=ExtResource("6_e7deo")]
+transform = Transform3D(-0.09, 0, -7.86805e-09, 0, 0.09, 0, 7.86805e-09, 0, -0.09, 0.246955, -0.399574, -0.418813)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D/flashlight"]
+transform = Transform3D(-11.1111, 0, -9.71364e-07, 0, 11.1111, 0, 9.71364e-07, 0, -11.1111, 0, 0, 4.73801)
+light_energy = 8.0
+spot_range = 11.3098
+spot_angle = 50.9093
 
 [node name="Inventory" type="Node" parent="."]
 script = ExtResource("3_q17cw")
@@ -170,12 +180,17 @@ alignment = 1
 
 [node name="ResumeButton" type="Button" parent="Pause/Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 30
 text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="Pause/Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Main Menu"
 
 [node name="QuitButton" type="Button" parent="Pause/Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 30
 text = "Quit"
 
 [node name="Label" type="Label" parent="Pause/Panel"]
@@ -194,4 +209,5 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="Pause/Panel/VBoxContainer/ResumeButton" to="Pause" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="Pause/Panel/VBoxContainer/MainMenuButton" to="Pause" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="Pause/Panel/VBoxContainer/QuitButton" to="Pause" method="_on_quit_button_pressed"]

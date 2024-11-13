@@ -1569,7 +1569,7 @@ height = 1.68842
 
 [node name="Zombie" type="CharacterBody3D"]
 script = ExtResource("1_o1aew")
-run_speed = 4.0
+run_speed = 4.4
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951062, 0)
@@ -2084,8 +2084,7 @@ default_state = NodePath("Wander")
 
 [node name="Wander" type="Node" parent="StateMachine"]
 script = ExtResource("6_f4xfv")
-min_wander_range = 18.0
-max_wander_range = 30.0
+max_wander_range = 8.0
 chase_range = 12.0
 min_wait_time = 0.1
 max_wait_time = 0.2
