@@ -1569,7 +1569,7 @@ height = 1.68842
 
 [node name="Zombie" type="CharacterBody3D"]
 script = ExtResource("1_o1aew")
-run_speed = 4.4
+run_speed = 4.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951062, 0)
