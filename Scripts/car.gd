@@ -7,10 +7,7 @@ func _ready() -> void:
 	
 func _on_key_collected():
 	can_interact = true
-	print("Car is now interactable!")
 
 func interact():
 	if can_interact:
 		get_node("/root/Main").win_game()
-	else:
-		print("Car interaction attempted without keys!")

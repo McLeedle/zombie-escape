@@ -81,7 +81,6 @@ func _on_body_entered(body : Node) -> void:
 		game_over.lose_game()
 
 func handle_stuck_behavior():
-	print("AI is stuck! Resetting path...")
 	reset_navigation()
 	
 func reset_navigation():

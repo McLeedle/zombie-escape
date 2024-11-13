@@ -25,7 +25,6 @@ func _on_item_collected(item: Item):
 func update_info_text():
 	info_text.text = "Find your Car Keys."
 	var key_count = inventory.get_number_of_item(key_item)
-	print("Key count in inventory: ", key_count)
 	
 	if inventory.get_number_of_item(key_item) == keys_to_win:
 		info_text.text = "Get back to your Car."
