@@ -25,3 +25,6 @@ func update (delta):
 	# State transitions.
 	if controller.player_distance > lose_interest_range:
 		state_machine.set_state("Wander")
+		
+	if controller.player_distance < attack_range:
+		get_node("/root/Main").lose_game()

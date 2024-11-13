@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var walk_speed : float = 1.0
 @export var run_speed : float = 2.5
+
 var running : bool = false
 var is_stopped : bool = false
 var look_at_player : bool = false
@@ -15,6 +16,9 @@ var target_y_rot : float
 @onready var player : PlayerController = get_tree().get_nodes_in_group("Player")[0]
 @onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
 @onready var raycast : RayCast3D = get_node("RayCast3D")
+@onready var collision_shape : CollisionShape3D = get_node("CollisionShape3D")
+@onready var game_over = get_node("/root/Main")
+
 
 var player_distance : float
 var stuck_timer : float = 0.0
@@ -38,10 +42,6 @@ func _physics_process(delta):
 	# If the AI hasn't moved for a while (and is colliding), handle stuck behavior
 	if stuck_timer > stuck_threshold:
 		handle_stuck_behavior()
-		
-	# Stop the ai if player is far away.
-	#if player_distance > 30:
-	#	return
 	
 	# Apply gravity.
 	if not is_on_floor():
@@ -75,6 +75,10 @@ func _physics_process(delta):
 	rotation.y = lerp_angle(rotation.y, target_y_rot, 0.1)
 	
 	move_and_slide()
+	
+func _on_body_entered(body : Node) -> void:
+	if body.is_in_group("Player"):
+		game_over.lose_game()
 
 func handle_stuck_behavior():
 	print("AI is stuck! Resetting path...")
