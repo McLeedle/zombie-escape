@@ -47,25 +47,38 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.21
-anchor_top = 0.789
-anchor_right = 0.21
-anchor_bottom = 0.789
-offset_left = -246.2
-offset_top = -203.12
-offset_right = 244.8
-offset_bottom = 202.88
+anchor_left = 0.5
+anchor_top = 0.548
+anchor_right = 0.5
+anchor_bottom = 0.548
+offset_left = -255.0
+offset_top = -202.84
+offset_right = 236.0
+offset_bottom = 203.16
 mouse_filter = 2
+theme_override_constants/separation = 10
 
-[node name="PlayButton" type="Button" parent="Panel/VBoxContainer"]
+[node name="NormalButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
-text = "Play"
+text = "Normal"
+
+[node name="HardButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Hard"
+
+[node name="ImpossibleButton" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Impossible"
 
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
-[connection signal="pressed" from="Panel/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/NormalButton" to="." method="_on_normal_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

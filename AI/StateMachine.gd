@@ -31,7 +31,7 @@ func set_state (state_name):
 	if current_state != null:
 		current_state.exit()
 	
-	print("SET STATE: " + state_name)
+	#print("SET STATE: " + state_name)
 	
 	state.enter()
 	current_state = state
