@@ -95,6 +95,7 @@ max_value = 1.0
 step = 0.1
 value = 0.5
 tick_count = 10
+ticks_on_borders = true
 metadata/_edit_use_anchors_ = true
 
 [node name="MusicLabel" type="Label" parent="Panel/MusicSlider"]
