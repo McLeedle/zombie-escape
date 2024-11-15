@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ca3ids5casn1m"]
+[gd_scene load_steps=22 format=3 uid="uid://ca3ids5casn1m"]
 
 [ext_resource type="Script" path="res://Scripts/GameOver.gd" id="1_64me1"]
 [ext_resource type="Material" uid="uid://drm3clvqpis42" path="res://Assets/Models/Terrain/TerrainMaterial.tres" id="1_nfrrq"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://6v75ptgvchje" path="res://Player Controller/Player.tscn" id="3_jbnoi"]
 [ext_resource type="PackedScene" uid="uid://cfr7h8g71lsm2" path="res://Assets/Models/Tree_0/Tree.tscn" id="4_e4lu5"]
 [ext_resource type="PackedScene" uid="uid://dwxdl6tkvd55k" path="res://Assets/Models/Rock_0/Rock.tscn" id="5_1qh7d"]
-[ext_resource type="PackedScene" uid="uid://cixy7f6o1dvv1" path="res://Scenes/Actors/zombie.tscn" id="5_aymac"]
 [ext_resource type="Texture2D" uid="uid://bqrwysnkw1cyy" path="res://Assets/Models/Car/Texture Black.png" id="7_q5h3o"]
 [ext_resource type="Script" path="res://Scripts/car.gd" id="7_tnx86"]
 [ext_resource type="ArrayMesh" uid="uid://b1g4nrncjwkof" path="res://Assets/Models/Car/Suspicious Car.obj" id="8_627iw"]
@@ -374,9 +373,6 @@ light_color = Color(0.667014, 0.045052, 0.137928, 1)
 [node name="OmniLight3D2" type="OmniLight3D" parent="NavigationRegion3D/Car"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35713, 0.418262, -1.31581)
 light_color = Color(0.667014, 0.045052, 0.137928, 1)
-
-[node name="Zombie" parent="." instance=ExtResource("5_aymac")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.54303, 0.0949943, -25.6223)
 
 [node name="InfoText" type="Label" parent="."]
 anchors_preset = 1

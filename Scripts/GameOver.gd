@@ -7,6 +7,7 @@ extends Node
 @onready var win_screen : Panel = get_node("WinScreen")
 @onready var lose_screen : Panel = get_node("LoseScreen")
 @onready var inventory : Inventory = get_node("Player/Inventory")
+@onready var enemy_spawner : Node = get_node("Spawner")
 
 var game_over : bool = false
 
@@ -42,6 +43,7 @@ func lose_game():
 	Engine.time_scale = 0
 
 func _on_play_again_button_pressed() -> void:
+	enemy_spawner.enemies_spawned = false
 	get_tree().reload_current_scene()
 
 func _on_quit_button_pressed() -> void:

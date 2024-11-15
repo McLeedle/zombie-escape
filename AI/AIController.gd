@@ -19,7 +19,6 @@ var target_y_rot : float
 @onready var collision_shape : CollisionShape3D = get_node("CollisionShape3D")
 @onready var game_over = get_node("/root/Main")
 
-
 var player_distance : float
 var stuck_timer : float = 0.0
 var stuck_threshold : float = 1.0
