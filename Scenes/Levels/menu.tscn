@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cq24iksyy6t2f"]
+[gd_scene load_steps=5 format=3 uid="uid://cq24iksyy6t2f"]
 
 [ext_resource type="Script" path="res://Scripts/menu.gd" id="1_a2ci1"]
+[ext_resource type="AudioStream" uid="uid://hcm6c5evn0r4" path="res://Assets/Audio/Music/Menu.ogg" id="2_82le5"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3jhre"]
 font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ntjk"]
+font_size = 30
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -78,7 +82,69 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "Quit"
 
+[node name="MusicSlider" type="HSlider" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.695312
+anchor_top = 0.397222
+anchor_right = 0.907812
+anchor_bottom = 0.44537
+offset_right = 8.0
+offset_bottom = 16.0
+max_value = 1.0
+step = 0.1
+value = 0.5
+tick_count = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="MusicLabel" type="Label" parent="Panel/MusicSlider"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -71.0
+offset_right = 361.0
+offset_bottom = -5.0
+text = "Music"
+label_settings = SubResource("LabelSettings_5ntjk")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXSlider" type="HSlider" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.698958
+anchor_top = 0.486111
+anchor_right = 0.885417
+anchor_bottom = 0.609259
+offset_left = -7.0
+offset_top = 28.0
+offset_right = 51.0
+offset_bottom = -37.0
+max_value = 1.0
+step = 0.1
+value = 0.5
+tick_count = 10
+ticks_on_borders = true
+metadata/_edit_use_anchors_ = true
+
+[node name="SFXLabel" type="Label" parent="Panel/SFXSlider"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -66.0
+offset_right = 361.0
+text = "SFX"
+label_settings = SubResource("LabelSettings_5ntjk")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_82le5")
+bus = &"Music"
+
 [connection signal="pressed" from="Panel/VBoxContainer/NormalButton" to="." method="_on_normal_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/HardButton" to="." method="_on_hard_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/ImpossibleButton" to="." method="_on_impossible_button_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="Panel/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Panel/SFXSlider" to="." method="_on_sfx_slider_value_changed"]

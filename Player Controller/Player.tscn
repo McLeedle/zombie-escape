@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6v75ptgvchje"]
+[gd_scene load_steps=18 format=3 uid="uid://6v75ptgvchje"]
 
 [ext_resource type="Script" path="res://Player Controller/PlayerController.gd" id="1_6dyqq"]
 [ext_resource type="Script" path="res://Player Controller/Interaction/InteractionController.gd" id="2_yxulp"]
@@ -6,6 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://cbkrq4u8m0qvg" path="res://Inventory/InventorySlot.tscn" id="4_fm5wy"]
 [ext_resource type="Script" path="res://Player Controller/Pausing/Pause.gd" id="5_xgptq"]
 [ext_resource type="PackedScene" uid="uid://b1j28fjrm3kah" path="res://Assets/Models/Flashlight/flashlight.glb" id="6_e7deo"]
+[ext_resource type="AudioStream" uid="uid://bxxbjql3erc2s" path="res://Assets/Audio/SFX/OGG/Breathing_slow.ogg" id="7_n2sgn"]
+[ext_resource type="AudioStream" uid="uid://boaxarl720i36" path="res://Assets/Audio/SFX/Breathing_fast.wav" id="8_l41d6"]
+[ext_resource type="AudioStream" uid="uid://df3fu8idtqjy6" path="res://Assets/Audio/SFX/Footsteps_walking.wav" id="9_45h5o"]
+[ext_resource type="AudioStream" uid="uid://ka58u15d1eye" path="res://Assets/Audio/SFX/Footsteps_running.wav" id="10_fekgp"]
+[ext_resource type="AudioStream" uid="uid://bo27aqv7cjd8e" path="res://Assets/Audio/SFX/Flashlight off.wav" id="11_dyhku"]
+[ext_resource type="AudioStream" uid="uid://dqkfnv5t2mtws" path="res://Assets/Audio/SFX/Flashlight on.wav" id="12_bu2go"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6fhfl"]
 radius = 0.3
@@ -23,6 +29,9 @@ font_size = 18
 font_size = 50
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8w0g6"]
+font_size = 30
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_6dyqq")
@@ -60,7 +69,7 @@ vertical_alignment = 1
 transform = Transform3D(-0.09, 0, -7.86805e-09, 0, 0.09, 0, 7.86805e-09, 0, -0.09, 0.246955, -0.399574, -0.418813)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D/flashlight"]
-transform = Transform3D(-11.1111, 0, -9.71364e-07, 0, 11.1111, 0, 9.71364e-07, 0, -11.1111, 0, 0, 4.73801)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 4.73801)
 light_energy = 5.0
 spot_range = 11.3098
 spot_angle = 50.9093
@@ -207,6 +216,92 @@ text = "PAUSED"
 label_settings = SubResource("LabelSettings_i1ask")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="Pause/Panel"]
+offset_left = 1433.0
+offset_top = 479.0
+offset_right = 1800.0
+offset_bottom = 520.0
+max_value = 1.0
+step = 0.1
+value = 0.5
+tick_count = 10
+ticks_on_borders = true
+
+[node name="MusicLabel" type="Label" parent="Pause/Panel/MusicSlider"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -71.0
+offset_right = 361.0
+offset_bottom = -5.0
+text = "Music"
+label_settings = SubResource("LabelSettings_8w0g6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="Pause/Panel"]
+offset_left = 1433.0
+offset_top = 590.0
+offset_right = 1800.0
+offset_bottom = 631.0
+max_value = 1.0
+step = 0.1
+value = 0.5
+tick_count = 10
+ticks_on_borders = true
+
+[node name="SFXLabel" type="Label" parent="Pause/Panel/SFXSlider"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = -66.0
+offset_right = 361.0
+text = "SFX"
+label_settings = SubResource("LabelSettings_8w0g6")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BreathNormal" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.40619, 0)
+stream = ExtResource("7_n2sgn")
+attenuation_model = 3
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="BreathRun" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46906, 0)
+stream = ExtResource("8_l41d6")
+attenuation_model = 3
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="FootstepsWalk" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46993, 0)
+stream = ExtResource("9_45h5o")
+attenuation_model = 3
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="FootstepsRun" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.44523, 0)
+stream = ExtResource("10_fekgp")
+attenuation_model = 3
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="FlashlightOff" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.47185, 0)
+stream = ExtResource("11_dyhku")
+attenuation_model = 3
+panning_strength = 0.0
+bus = &"SFX"
+
+[node name="FlashlightOn" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46101, 0)
+stream = ExtResource("12_bu2go")
+attenuation_model = 3
+panning_strength = 0.0
+bus = &"SFX"
 
 [connection signal="pressed" from="Pause/Panel/VBoxContainer/ResumeButton" to="Pause" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Pause/Panel/VBoxContainer/MainMenuButton" to="Pause" method="_on_main_menu_button_pressed"]

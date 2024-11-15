@@ -1,8 +1,17 @@
 extends Node
 
 @onready var pause_panel : Panel = get_node("Panel")
+@onready var music_slider : HSlider = get_node("Panel/MusicSlider")
+@onready var sfx_slider : HSlider = get_node("Panel/SFXSlider")
 
 var is_paused : bool = false
+
+func _ready() -> void:
+	music_slider.connect("value_changed", Callable(VolumeManager, "set_music_volume"))
+	sfx_slider.connect("value_changed", Callable(VolumeManager, "set_sfx_volume"))
+	
+	music_slider.value = VolumeManager.music_volume
+	sfx_slider.value = VolumeManager.sfx_volume
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b5kb5ehnigogq"
+path="res://.godot/imported/Flashlight off.ogg-81545ebe5385413cfe982b64a271ec05.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/SFX/OGG/Flashlight off.ogg"
+dest_files=["res://.godot/imported/Flashlight off.ogg-81545ebe5385413cfe982b64a271ec05.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
