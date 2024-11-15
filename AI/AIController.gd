@@ -7,6 +7,7 @@ extends CharacterBody3D
 var running : bool = false
 var is_stopped : bool = false
 var look_at_player : bool = false
+var chasing : bool = false
 
 var move_direction : Vector3
 var target_y_rot : float
@@ -19,9 +20,25 @@ var target_y_rot : float
 @onready var collision_shape : CollisionShape3D = get_node("CollisionShape3D")
 @onready var game_over = get_node("/root/Main")
 
+# Audio References
+@onready var breathing_sound : AudioStreamPlayer3D = get_node("Breathing")
+@onready var running_sound : AudioStreamPlayer3D = get_node("Running")
+@onready var grunt_sound : AudioStreamPlayer3D = get_node("Grunt")
+var breathing_sound_stream : AudioStreamOggVorbis
+var running_sound_stream : AudioStreamOggVorbis
+var grunt_sound_stream : AudioStreamOggVorbis
+
 var player_distance : float
 var stuck_timer : float = 0.0
 var stuck_threshold : float = 1.0
+
+func _ready() -> void:
+	setup_audio_stream()
+	
+	if breathing_sound:
+		breathing_sound.play()
+	if running_sound:
+		running_sound.play()
 
 func _process(delta):
 	if player:
@@ -108,3 +125,23 @@ func play_walk_animation():
 
 func play_run_animation():
 	anim_player.play("Run")
+
+func setup_audio_stream():
+		# Load the audio stream resources
+	breathing_sound_stream = load("res://Assets/Audio/SFX/OGG/Monster_breathing.ogg")
+	running_sound_stream = load("res://Assets/Audio/SFX/OGG/Monster_running.ogg")
+	grunt_sound_stream = load("res://Assets/Audio/SFX/OGG/Zombie_grunt.ogg")
+	
+	if breathing_sound:
+		breathing_sound.stream = breathing_sound_stream
+		breathing_sound_stream.loop = true
+	if running_sound:
+		running_sound.stream = running_sound_stream
+		running_sound_stream.loop = true
+	if grunt_sound:
+		grunt_sound.stream = grunt_sound_stream
+		grunt_sound_stream.loop = false
+
+func stop_grunt_audio():
+	if grunt_sound.is_playing():
+		grunt_sound.stop()

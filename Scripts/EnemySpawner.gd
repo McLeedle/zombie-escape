@@ -1,6 +1,6 @@
 extends Node
 
-static var enemies_spawned : bool = false
+var enemies_spawned : bool = false
 
 @export var normal_spawn_positions : Array = [Vector3(-1.543, 0.095, -25.62)]
 @export var hard_spawn_positions : Array = [Vector3(-1.543, 0.095, -25.62), Vector3(-26.81, 0.095, 0.521)]
