@@ -41,7 +41,6 @@ func _ready():
 	setup_audio_stream()
 	stop_playing_audio()
 	
-
 func setup_audio_stream() -> void:
 	# Load the audio stream resources
 	breath_run_stream = load("res://Assets/Audio/SFX/OGG/Breathing_fast.ogg")
@@ -100,6 +99,8 @@ func _physics_process(delta: float) -> void:
 		move_dir *= run_dot
 				
 		# Play running sounds, but only if they aren't already playing
+		# If the player is running, play the running sounds and stop the walking sounds.
+		# We only play the running sounds if they're not already playing to prevent overlap.
 		if not breath_run.playing:
 			breath_run.play()
 			is_playing_breath_run = true
