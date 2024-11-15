@@ -218,6 +218,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="Pause/Panel"]
+layout_mode = 0
 offset_left = 1433.0
 offset_top = 479.0
 offset_right = 1800.0
@@ -240,6 +241,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SFXSlider" type="HSlider" parent="Pause/Panel"]
+layout_mode = 0
 offset_left = 1433.0
 offset_top = 590.0
 offset_right = 1800.0
