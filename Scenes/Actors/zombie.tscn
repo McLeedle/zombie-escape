@@ -2082,7 +2082,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.820384, 0.142498)
 shape = SubResource("CapsuleShape3D_wv4a1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("default_state")]
 script = ExtResource("5_eqgip")
