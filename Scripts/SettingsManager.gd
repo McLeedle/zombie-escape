@@ -21,7 +21,7 @@ func load_settings() -> void:
 		var file = FileAccess.open(SETTINGS_PATH, FileAccess.READ)
 		if file:
 			var content = file.get_as_text()
-			file.close
+			file.close()
 			
 			var parsed = JSON.parse_string(content)
 			if parsed != null:
