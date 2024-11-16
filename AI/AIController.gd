@@ -36,11 +36,6 @@ var stuck_threshold : float = 1.0
 func _ready() -> void:
 	game_over_triggered = false
 	setup_audio_stream()
-	
-	if breathing_sound:
-		breathing_sound.play()
-	if running_sound:
-		running_sound.play()
 
 func _process(delta):
 	if player:
@@ -127,23 +122,10 @@ func play_run_animation():
 
 func setup_audio_stream():
 	# Load the audio stream resources
-	breathing_sound_stream = load("res://Assets/Audio/SFX/OGG/Monster_breathing.ogg")
-	running_sound_stream = load("res://Assets/Audio/SFX/OGG/Monster_running.ogg")
-	grunt_sound_stream = load("res://Assets/Audio/SFX/OGG/Zombie_grunt.ogg")
-	gasp_sound_stream = load("res://Assets/Audio/SFX/OGG/Gasp_3.ogg")
-	
-	if breathing_sound:
-		breathing_sound.stream = breathing_sound_stream
-		breathing_sound_stream.loop = true
-	if running_sound:
-		running_sound.stream = running_sound_stream
-		running_sound_stream.loop = true
-	if grunt_sound:
-		grunt_sound.stream = grunt_sound_stream
-		grunt_sound_stream.loop = false
-	if gasp_sound:
-		gasp_sound.stream = gasp_sound_stream
-		gasp_sound_stream.loop = false
+	breathing_sound.stream.loop = true
+	running_sound.stream.loop = true
+	breathing_sound.play()
+	running_sound.play()
 		
 func handle_player_caught():
 	if gasp_sound.is_playing():

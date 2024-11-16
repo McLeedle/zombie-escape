@@ -28,10 +28,6 @@ var camera_look_input : Vector2
 @onready var flashlight_off : AudioStreamPlayer3D = get_node("FlashlightOff")
 @onready var flashlight_on : AudioStreamPlayer3D = get_node("FlashlightOn")
 
-var breath_run_stream : AudioStreamOggVorbis
-var footsteps_walk_stream : AudioStreamOggVorbis
-var footsteps_run_stream : AudioStreamOggVorbis
-
 var is_playing_breath_run : bool = false
 var is_playing_footsteps_walk : bool = false
 var is_playing_footsteps_run : bool = false
@@ -42,20 +38,10 @@ func _ready():
 	stop_playing_audio()
 	
 func setup_audio_stream() -> void:
-	# Load the audio stream resources
-	breath_run_stream = load("res://Assets/Audio/SFX/OGG/Breathing_fast.ogg")
-	footsteps_walk_stream = load("res://Assets/Audio/SFX/OGG/Footsteps_walking.ogg")
-	footsteps_run_stream = load("res://Assets/Audio/SFX/OGG/Footsteps_running.ogg")
-	
-	# Assign the stream to the AudioStreamPlayer3D nodes
-	breath_run.stream = breath_run_stream
-	footsteps_walk.stream = footsteps_walk_stream
-	footsteps_run.stream = footsteps_run_stream
-		
-	# Set the loop property on the AudioStream resource
-	breath_run_stream.loop = true
-	footsteps_walk_stream.loop = true
-	footsteps_run_stream.loop = true
+	breath_run.stream.loop = true
+	footsteps_walk.stream.loop = true
+	footsteps_run.stream.loop = true
+
 
 func stop_playing_audio() -> void:
 	breath_run.stop()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=18 format=4 uid="uid://dqpft3sjggdwh"]
+[gd_scene load_steps=19 format=4 uid="uid://dqpft3sjggdwh"]
 
 [ext_resource type="Script" path="res://Items/WorldItem.gd" id="1_op5gg"]
+[ext_resource type="AudioStream" uid="uid://ddbtwenxs5hap" path="res://Assets/Audio/SFX/OGG/Keys_pickup.ogg" id="2_0qqa0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mcplb"]
 resource_name = "silver.001"
@@ -287,4 +288,9 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22702, 0.325562, 0.179718)
 shape = SubResource("BoxShape3D_lx0b8")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="KeyPickup" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.0602, 0)
+stream = ExtResource("2_0qqa0")
+volume_db = 6.0
+panning_strength = 0.0
+bus = &"SFX"

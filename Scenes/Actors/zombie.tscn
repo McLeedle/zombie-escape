@@ -2103,25 +2103,24 @@ controller_path = NodePath("../..")
 
 [node name="Breathing" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("8_1f7rm")
-attenuation_model = 3
 volume_db = 3.0
-max_distance = 15.0
+autoplay = true
+max_distance = 25.0
 panning_strength = 0.0
 bus = &"SFX"
 doppler_tracking = 1
 
 [node name="Running" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("9_bddyc")
-attenuation_model = 3
 volume_db = 3.0
-max_distance = 15.0
+autoplay = true
+max_distance = 25.0
 panning_strength = 0.0
 bus = &"SFX"
 doppler_tracking = 1
 
 [node name="Grunt" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_oa6bj")
-attenuation_model = 3
 volume_db = 5.0
 max_distance = 15.0
 panning_strength = 0.0
