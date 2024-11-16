@@ -17,7 +17,7 @@ func _ready() -> void:
 	update_info_text()
 	GlobalSignals.connect("item_collected", Callable(self, "_on_item_collected"))
 	
-func _on_item_collected(item: Item):
+func _on_item_collected(_item: Item):
 		update_info_text()
 		
 		if inventory.get_number_of_item(key_item) >= keys_to_win:
@@ -25,7 +25,7 @@ func _on_item_collected(item: Item):
 	
 func update_info_text():
 	info_text.text = "Find your Car Keys."
-	var key_count = inventory.get_number_of_item(key_item)
+	var _key_count = inventory.get_number_of_item(key_item)
 	
 	if inventory.get_number_of_item(key_item) == keys_to_win:
 		info_text.text = "Get back to your Car."

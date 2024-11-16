@@ -13,7 +13,7 @@ func _ready() -> void:
 	music_slider.value = VolumeManager.music_volume
 	sfx_slider.value = VolumeManager.sfx_volume
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		toggle_pause()
 		

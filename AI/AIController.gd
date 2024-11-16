@@ -37,20 +37,20 @@ func _ready() -> void:
 	game_over_triggered = false
 	setup_audio_stream()
 
-func _process(delta):
+func _process(_delta):
 	if player:
 		player_distance = position.distance_to(player.position)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# If the AI's velocity is small or zero, increase the stuck timer
 	if velocity.length() < 0.1:
-		stuck_timer += delta
+		stuck_timer += _delta
 	else:
 		stuck_timer = 0
 	
 	# check for obstacles using raycasting
 	if raycast.is_colliding():
-		stuck_timer += delta
+		stuck_timer += _delta
 	
 	# If the AI hasn't moved for a while (and is colliding), handle stuck behavior
 	if stuck_timer > stuck_threshold:
@@ -58,7 +58,7 @@ func _physics_process(delta):
 	
 	# Apply gravity.
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= gravity * _delta
 	
 	var target_pos = agent.get_next_path_position()
 	var move_dir = global_position.direction_to(target_pos)
@@ -103,7 +103,7 @@ func get_new_target_position() -> Vector3:
 	var new_position = player.position + random_offset
 	return new_position
 	
-func move_to_position (to_position : Vector3, adjust_pos : bool = true):
+func move_to_position(to_position : Vector3, _adjust_pos : bool = true):
 	if not agent:
 		agent = get_node("NavigationAgent3D")
 		

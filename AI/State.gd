@@ -17,21 +17,21 @@ func enter ():
 	active = true
 
 # Called when we exit the state.
-func exit ():
+func exit():
 	active = false
 
 # Called every frame while in the state.
-func update (delta):
+func update(_delta):
 	pass
 
 # Called every physics update while in the state.
-func physics_update (delta):
+func physics_update(_delta):
 	pass
 
 # Called when the controller has completed a navigation path.
-func navigation_complete ():
+func navigation_complete():
 	pass
 
-func _random_offset () -> Vector3:
+func _random_offset() -> Vector3:
 	var offset = Vector3(randf_range(-1, 1), 0, randf_range(-1, 1))
 	return offset.normalized()

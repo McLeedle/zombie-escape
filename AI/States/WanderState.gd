@@ -11,27 +11,27 @@ func initialize ():
 	super.initialize()
 
 # Called when we enter into the state.
-func enter ():
+func enter():
 	super.enter()
 	home_position = controller.position
 	_new_wander_position()
 	controller.play_run_animation()
 
 # Called when we exit the state.
-func exit ():
+func exit():
 	super.exit()
 
 # Called every frame while in the state.
-func update (delta):
+func update(_delta):
 	# State transitions.
 	if controller.player_distance < chase_range:
 		state_machine.set_state("Chase")
 
 # Called every physics update while in the state.
-func physics_update (delta):
+func physics_update(_delta):
 	pass
 
-func navigation_complete ():
+func navigation_complete():
 	await get_tree().create_timer(randf_range(min_wait_time, max_wait_time)).timeout
 	
 	if not active:

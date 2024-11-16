@@ -3,7 +3,7 @@ extends RayCast3D
 @onready var interact_prompt_label : Label = get_node("Label")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var object = get_collider()
 	interact_prompt_label.text = ""
 	

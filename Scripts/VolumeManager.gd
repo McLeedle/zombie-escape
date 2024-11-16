@@ -34,7 +34,7 @@ func save_settings() -> void:
 			"music_volume" : music_volume,
 			"sfx_volume" : sfx_volume
 		}
-		file.store_string(json_instance.stringify(settings))
+		file.store_string(JSON.stringify(settings))
 		file.close()
 
 func load_settings() -> void:

@@ -19,7 +19,7 @@ func exit():
 	controller.running = false
 
 # Called every frame while in the state.
-func update(delta):
+func update(_delta):
 	if controller.game_over_triggered:
 		return
 		
