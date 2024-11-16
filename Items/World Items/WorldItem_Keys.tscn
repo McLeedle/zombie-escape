@@ -294,3 +294,8 @@ stream = ExtResource("2_0qqa0")
 volume_db = 6.0
 panning_strength = 0.0
 bus = &"SFX"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41679, 0)
+light_energy = 0.3
+omni_range = 3.0

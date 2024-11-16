@@ -7,10 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://6v75ptgvchje" path="res://Player Controller/Player.tscn" id="3_jbnoi"]
 [ext_resource type="PackedScene" uid="uid://cfr7h8g71lsm2" path="res://Assets/Models/Tree_0/Tree.tscn" id="4_e4lu5"]
 [ext_resource type="PackedScene" uid="uid://dwxdl6tkvd55k" path="res://Assets/Models/Rock_0/Rock.tscn" id="5_1qh7d"]
+[ext_resource type="Script" path="res://Scripts/KeyItemSpawner.gd" id="6_2qvrq"]
 [ext_resource type="Texture2D" uid="uid://bqrwysnkw1cyy" path="res://Assets/Models/Car/Texture Black.png" id="7_q5h3o"]
 [ext_resource type="Script" path="res://Scripts/car.gd" id="7_tnx86"]
 [ext_resource type="ArrayMesh" uid="uid://b1g4nrncjwkof" path="res://Assets/Models/Car/Suspicious Car.obj" id="8_627iw"]
-[ext_resource type="PackedScene" uid="uid://dqpft3sjggdwh" path="res://Items/World Items/WorldItem_Keys.tscn" id="9_igmgc"]
 [ext_resource type="Script" path="res://Scripts/EnemySpawner.gd" id="13_nl1y4"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_si4vd"]
@@ -63,8 +63,11 @@ material_override = ExtResource("1_nfrrq")
 mesh = ExtResource("2_pthys")
 skeleton = NodePath("../..")
 
-[node name="Spawner" type="Node3D" parent="."]
+[node name="EnemySpawner" type="Node3D" parent="."]
 script = ExtResource("13_nl1y4")
+
+[node name="KeyItemSpawner" type="Node3D" parent="."]
+script = ExtResource("6_2qvrq")
 
 [node name="Player" parent="." instance=ExtResource("3_jbnoi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99461, 0.00161433, 21.1785)
@@ -483,13 +486,6 @@ text = "Play Again"
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Quit"
-
-[node name="WorldItem_KeyChain" parent="." instance=ExtResource("9_igmgc")]
-transform = Transform3D(0.116734, 0, -0.0278057, 0, 0.12, 0, 0.0278057, 0, 0.116734, -6.86874, 0.0636055, -26.1239)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="WorldItem_KeyChain"]
-transform = Transform3D(8.33333, 0, 0, 0, 8.33333, 0, 0, 0, 8.33333, 0, 2.46451, 0)
-light_energy = 0.1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_25riw")

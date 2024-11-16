@@ -7,7 +7,7 @@ extends Node
 @onready var win_screen : Panel = get_node("WinScreen")
 @onready var lose_screen : Panel = get_node("LoseScreen")
 @onready var inventory : Inventory = get_node("Player/Inventory")
-@onready var enemy_spawner : Node = get_node("Spawner")
+@onready var enemy_spawner : Node = get_node("EnemySpawner")
 
 var game_over : bool = false
 
