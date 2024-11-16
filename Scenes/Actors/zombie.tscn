@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://cixy7f6o1dvv1"]
+[gd_scene load_steps=20 format=4 uid="uid://cixy7f6o1dvv1"]
 
 [ext_resource type="Script" path="res://AI/AIController.gd" id="1_o1aew"]
 [ext_resource type="Texture2D" uid="uid://46jlnl5rv0od" path="res://Assets/Models/Zombie/Zombie_parasiteZombie_body_diffuse.png" id="2_5lfhk"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bl6pquyp7jsdc" path="res://Assets/Audio/SFX/OGG/Monster_breathing.ogg" id="8_1f7rm"]
 [ext_resource type="AudioStream" uid="uid://dxogh476v3ww3" path="res://Assets/Audio/SFX/OGG/Monster_running.ogg" id="9_bddyc"]
 [ext_resource type="AudioStream" uid="uid://bxnfeh4ogislm" path="res://Assets/Audio/SFX/OGG/Zombie_grunt.ogg" id="10_oa6bj"]
+[ext_resource type="AudioStream" uid="uid://kp5m8m8p4ly2" path="res://Assets/Audio/SFX/OGG/Gasp_32.ogg" id="11_5nddo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj5mi"]
 resource_name = "parasitezombie_Material1"
@@ -2127,4 +2128,13 @@ panning_strength = 0.0
 bus = &"SFX"
 doppler_tracking = 1
 
+[node name="Gasp" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("11_5nddo")
+attenuation_model = 3
+volume_db = 6.0
+max_db = 6.0
+panning_strength = 0.0
+bus = &"SFX"
+
 [connection signal="target_reached" from="NavigationAgent3D" to="StateMachine" method="on_target_reached"]
+[connection signal="finished" from="Gasp" to="." method="_on_gasp_finished"]

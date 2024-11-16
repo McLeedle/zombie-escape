@@ -7,7 +7,7 @@ extends CharacterBody3D
 var running : bool = false
 var is_stopped : bool = false
 var look_at_player : bool = false
-var chasing : bool = false
+var game_over_triggered : bool = false
 
 var move_direction : Vector3
 var target_y_rot : float
@@ -17,22 +17,24 @@ var target_y_rot : float
 @onready var player : PlayerController = get_tree().get_nodes_in_group("Player")[0]
 @onready var anim_player : AnimationPlayer = get_node("AnimationPlayer")
 @onready var raycast : RayCast3D = get_node("RayCast3D")
-@onready var collision_shape : CollisionShape3D = get_node("CollisionShape3D")
 @onready var game_over = get_node("/root/Main")
 
 # Audio References
 @onready var breathing_sound : AudioStreamPlayer3D = get_node("Breathing")
 @onready var running_sound : AudioStreamPlayer3D = get_node("Running")
 @onready var grunt_sound : AudioStreamPlayer3D = get_node("Grunt")
+@onready var gasp_sound : AudioStreamPlayer3D = get_node("Gasp")
 var breathing_sound_stream : AudioStreamOggVorbis
 var running_sound_stream : AudioStreamOggVorbis
 var grunt_sound_stream : AudioStreamOggVorbis
+var gasp_sound_stream : AudioStreamOggVorbis
 
 var player_distance : float
 var stuck_timer : float = 0.0
 var stuck_threshold : float = 1.0
 
 func _ready() -> void:
+	game_over_triggered = false
 	setup_audio_stream()
 	
 	if breathing_sound:
@@ -92,9 +94,6 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-func _on_body_entered(body : Node) -> void:
-	if body.is_in_group("Player"):
-		game_over.lose_game()
 
 func handle_stuck_behavior():
 	reset_navigation()
@@ -127,10 +126,11 @@ func play_run_animation():
 	anim_player.play("Run")
 
 func setup_audio_stream():
-		# Load the audio stream resources
+	# Load the audio stream resources
 	breathing_sound_stream = load("res://Assets/Audio/SFX/OGG/Monster_breathing.ogg")
 	running_sound_stream = load("res://Assets/Audio/SFX/OGG/Monster_running.ogg")
 	grunt_sound_stream = load("res://Assets/Audio/SFX/OGG/Zombie_grunt.ogg")
+	gasp_sound_stream = load("res://Assets/Audio/SFX/OGG/Gasp_3.ogg")
 	
 	if breathing_sound:
 		breathing_sound.stream = breathing_sound_stream
@@ -141,7 +141,30 @@ func setup_audio_stream():
 	if grunt_sound:
 		grunt_sound.stream = grunt_sound_stream
 		grunt_sound_stream.loop = false
+	if gasp_sound:
+		gasp_sound.stream = gasp_sound_stream
+		gasp_sound_stream.loop = false
+		
+func handle_player_caught():
+	if gasp_sound.is_playing():
+		return
+	if gasp_sound:
+		gasp_sound.play()
 
-func stop_grunt_audio():
+func _on_gasp_finished() -> void:
+	lose_game()
+
+func lose_game():
+	game_over_triggered = true
+	stop_all_audio()
+	game_over.lose_game()
+
+func stop_all_audio():
+	if breathing_sound.is_playing():
+		breathing_sound.stop()
+	if running_sound.is_playing():
+		running_sound.stop()
 	if grunt_sound.is_playing():
 		grunt_sound.stop()
+	if gasp_sound.is_playing():
+		gasp_sound.stop()

@@ -17,10 +17,12 @@ func enter():
 func exit():
 	super.exit()
 	controller.running = false
-	controller.stop_grunt_audio()
 
 # Called every frame while in the state.
 func update(delta):
+	if controller.game_over_triggered:
+		return
+		
 	# Update the path to the player every 0.1 seconds.
 	if Time.get_unix_time_from_system() - last_path_update_time > path_update_rate:
 		controller.move_to_position(controller.player.position, false)
@@ -31,4 +33,4 @@ func update(delta):
 		state_machine.set_state("Wander")
 		
 	if controller.player_distance < attack_range:
-		get_node("/root/Main").lose_game()
+		controller.handle_player_caught()
