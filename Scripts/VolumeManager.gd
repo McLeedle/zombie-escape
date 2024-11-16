@@ -14,11 +14,15 @@ func set_music_volume(volume : float) -> void:
 	music_volume = volume
 	AudioServer.set_bus_volume_db(music_bus_id, linear_to_db(music_volume))
 	AudioServer.set_bus_mute(music_bus_id, music_volume < 0.05)
+	
+	save_settings()
 
 func set_sfx_volume(volume : float) -> void:
 	sfx_volume = volume
 	AudioServer.set_bus_volume_db(sfx_bus_id, linear_to_db(sfx_volume))
 	AudioServer.set_bus_mute(sfx_bus_id, sfx_volume < 0.05)
+	
+	save_settings()
 	
 func apply_settings() -> void:
 	set_music_volume(music_volume)

@@ -7,11 +7,11 @@ extends Node
 var is_paused : bool = false
 
 func _ready() -> void:
+	load_volume_settings()
+	
 	music_slider.connect("value_changed", Callable(VolumeManager, "set_music_volume"))
 	sfx_slider.connect("value_changed", Callable(VolumeManager, "set_sfx_volume"))
-	
-	music_slider.value = VolumeManager.music_volume
-	sfx_slider.value = VolumeManager.sfx_volume
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -28,12 +28,18 @@ func pause():
 	pause_panel.visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	Engine.time_scale = 0
+	load_volume_settings()
 
 func unpause():
 	is_paused = false
 	pause_panel.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Engine.time_scale = 1
+
+func load_volume_settings() -> void:
+	SettingsManager.load_settings()
+	music_slider.value = VolumeManager.music_volume
+	sfx_slider.value = VolumeManager.sfx_volume
 
 func _on_resume_button_pressed() -> void:
 	unpause()
