@@ -74,4 +74,4 @@ func _on_quit_button_pressed() -> void:
 func start_game() -> void:
 	menu_music.stop()
 	get_tree().change_scene_to_file("res://Scenes/Levels/main.tscn")
-	SettingsManager.load_volume_settings()
+	SettingsManager.load_settings()

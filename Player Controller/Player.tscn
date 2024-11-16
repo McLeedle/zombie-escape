@@ -333,3 +333,5 @@ bus = &"SFX"
 [connection signal="pressed" from="Pause/Panel/VBoxContainer/ResumeButton" to="Pause" method="_on_resume_button_pressed"]
 [connection signal="pressed" from="Pause/Panel/VBoxContainer/MainMenuButton" to="Pause" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="Pause/Panel/VBoxContainer/QuitButton" to="Pause" method="_on_quit_button_pressed"]
+[connection signal="value_changed" from="Pause/Panel/MusicSlider" to="Pause" method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Pause/Panel/SFXSlider" to="Pause" method="_on_sfx_slider_value_changed"]

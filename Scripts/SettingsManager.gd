@@ -40,6 +40,7 @@ func load_settings() -> void:
 	is_initialized = true
 	emit_signal("settings_ready")
 
+
 func save_settings() -> void:
 	if not is_initialized:
 		print("SettingsManager: Initialization incomplete, skipping save.")

@@ -7,10 +7,10 @@ extends Node
 var is_paused : bool = false
 
 func _ready() -> void:
-	load_volume_settings()
+	SettingsManager.load_settings()
+	music_slider.value = SettingsManager.settings["volume"]["music_volume"]
+	sfx_slider.value = SettingsManager.settings["volume"]["sfx_volume"]
 	
-	music_slider.connect("value_changed", Callable(VolumeManager, "set_music_volume"))
-	sfx_slider.connect("value_changed", Callable(VolumeManager, "set_sfx_volume"))
 
 
 func _process(_delta: float) -> void:
@@ -28,7 +28,10 @@ func pause():
 	pause_panel.visible = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	Engine.time_scale = 0
-	load_volume_settings()
+	
+	SettingsManager.load_settings()
+	music_slider.value = SettingsManager.settings["volume"]["music_volume"]
+	sfx_slider.value = SettingsManager.settings["volume"]["sfx_volume"]
 
 func unpause():
 	is_paused = false
@@ -36,16 +39,23 @@ func unpause():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Engine.time_scale = 1
 
-func load_volume_settings() -> void:
-	SettingsManager.load_settings()
-	music_slider.value = VolumeManager.music_volume
-	sfx_slider.value = VolumeManager.sfx_volume
+func _on_music_slider_value_changed(value : float) -> void:
+	SettingsManager.settings["volume"]["music_volume"] = value
+	VolumeManager.set_music_volume(value)
+	SettingsManager.save_settings()
+	
+func _on_sfx_slider_value_changed(value : float) -> void:
+	SettingsManager.settings["volume"]["sfx_volume"] = value
+	VolumeManager.set_sfx_volume(value)
+	SettingsManager.save_settings()
 
 func _on_resume_button_pressed() -> void:
 	unpause()
 
 func _on_main_menu_button_pressed() -> void:
+	SettingsManager.save_settings()
 	get_tree().change_scene_to_file("res://Scenes/Levels/menu.tscn")
 
 func _on_quit_button_pressed() -> void:
+	SettingsManager.save_settings()
 	get_tree().quit()
