@@ -11,8 +11,6 @@ func _ready() -> void:
 	music_slider.value = SettingsManager.settings["volume"]["music_volume"]
 	sfx_slider.value = SettingsManager.settings["volume"]["sfx_volume"]
 	
-
-
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		toggle_pause()
@@ -30,8 +28,8 @@ func pause():
 	Engine.time_scale = 0
 	
 	SettingsManager.load_settings()
-	music_slider.value = SettingsManager.settings["volume"]["music_volume"]
-	sfx_slider.value = SettingsManager.settings["volume"]["sfx_volume"]
+	VolumeManager.set_music_volume(SettingsManager.settings["volume"]["music_volume"])
+	VolumeManager.set_sfx_volume(SettingsManager.settings["volume"]["sfx_volume"])
 
 func unpause():
 	is_paused = false

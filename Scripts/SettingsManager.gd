@@ -37,6 +37,10 @@ func load_settings() -> void:
 	
 	# Apply settings after loading them
 	apply_window_settings()
+	
+	VolumeManager.set_music_volume(settings["volume"]["music_volume"])
+	VolumeManager.set_sfx_volume(settings["volume"]["sfx_volume"])
+	
 	is_initialized = true
 	emit_signal("settings_ready")
 

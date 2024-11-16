@@ -13,6 +13,9 @@ func _ready() -> void:
 
 	# Load settings first
 	SettingsManager.load_settings()
+	
+	VolumeManager.set_music_volume(SettingsManager.settings["volume"]["music_volume"])
+	VolumeManager.set_sfx_volume(SettingsManager.settings["volume"]["sfx_volume"])
 
 	# Disconnect signals to avoid accidental saves
 	music_slider.disconnect("value_changed", Callable(self, "_on_music_slider_value_changed"))
