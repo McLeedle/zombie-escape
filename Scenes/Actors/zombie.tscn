@@ -2090,7 +2090,7 @@ default_state = NodePath("Wander")
 
 [node name="Wander" type="Node" parent="StateMachine"]
 script = ExtResource("6_f4xfv")
-max_wander_range = 8.0
+max_wander_range = 15.0
 chase_range = 12.0
 min_wait_time = 0.1
 max_wait_time = 0.2
