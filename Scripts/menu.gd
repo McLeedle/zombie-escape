@@ -1,12 +1,27 @@
 extends Control
 
-@onready var menu_music: AudioStreamPlayer = get_node("MenuMusic")
-@onready var menu_music_stream : AudioStream = menu_music.stream
+@onready var menu_music : AudioStreamPlayer = get_node("MenuMusic")
+@onready var resolution_dropdown : OptionButton = get_node("Panel/ScreenSettings/ResolutionDropdown")
+@onready var fullscreen_checkbox : CheckBox = get_node("Panel/ScreenSettings/CheckBox")
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	menu_music_stream.loop = true
+	menu_music.stream.loop = true
 	menu_music.play()
+	
+	for res in DisplayManager.resolutions:
+		resolution_dropdown.add_item(str(res.x) + "x" + str(res.y))
+	
+	resolution_dropdown.select(DisplayManager.get_current_resolution_index())
+	fullscreen_checkbox.set_pressed(DisplayManager.is_fullscreen_mode())
+
+func _on_resolution_dropdown_item_selected(index : int) -> void:
+	DisplayManager.set_resolution(index)
+	SettingsManager.save_settings()
+
+func _on_fullscreen_checkbox_toggled(pressed : bool) -> void:
+	DisplayManager.set_fullscreen(pressed)
+	SettingsManager.save_settings()
 
 func _on_music_slider_value_changed(value: float) -> void:
 	VolumeManager.set_music_volume(value)

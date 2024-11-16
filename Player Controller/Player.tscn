@@ -45,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0135717, 1.5, 0.00417519)
 current = true
 
 [node name="InteractionController" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -2)
+target_position = Vector3(0, 0, -3)
 script = ExtResource("2_yxulp")
 
 [node name="Label" type="Label" parent="Camera3D/InteractionController"]
@@ -66,7 +66,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="flashlight" parent="Camera3D" instance=ExtResource("6_e7deo")]
-transform = Transform3D(-0.09, 0, -7.86805e-09, 0, 0.09, 0, 7.86805e-09, 0, -0.09, 0.246955, -0.399574, -0.418813)
+transform = Transform3D(-0.09, 0, -7.86805e-09, 0, 0.09, 0, 7.86805e-09, 0, -0.09, 0.413818, -0.399574, -0.418813)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera3D/flashlight"]
 transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 0, 0, 4.73801)
@@ -218,11 +218,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MusicSlider" type="HSlider" parent="Pause/Panel"]
-layout_mode = 0
-offset_left = 1433.0
-offset_top = 479.0
-offset_right = 1800.0
-offset_bottom = 520.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.691
+anchor_top = 0.426
+anchor_right = 0.977
+anchor_bottom = 0.483
+offset_left = -0.480042
+offset_top = 0.279968
+offset_right = 0.439941
+offset_bottom = 0.23999
 max_value = 1.0
 step = 0.1
 value = 0.5
@@ -230,22 +235,32 @@ tick_count = 10
 ticks_on_borders = true
 
 [node name="MusicLabel" type="Label" parent="Pause/Panel/MusicSlider"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = -71.0
-offset_right = 361.0
-offset_bottom = -5.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.044
+anchor_top = -1.732
+anchor_right = 0.984
+anchor_bottom = -0.122
+offset_left = -0.148001
+offset_top = 0.012001
+offset_right = -0.128021
+offset_bottom = 0.00200033
 text = "Music"
 label_settings = SubResource("LabelSettings_8w0g6")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="SFXSlider" type="HSlider" parent="Pause/Panel"]
-layout_mode = 0
-offset_left = 1433.0
-offset_top = 590.0
-offset_right = 1800.0
-offset_bottom = 631.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.691
+anchor_top = 0.593
+anchor_right = 0.977
+anchor_bottom = 0.622
+offset_left = -0.480042
+offset_top = 0.0399475
+offset_right = 0.439941
+offset_bottom = 20.16
 max_value = 1.0
 step = 0.1
 value = 0.5
@@ -253,10 +268,14 @@ tick_count = 10
 ticks_on_borders = true
 
 [node name="SFXLabel" type="Label" parent="Pause/Panel/SFXSlider"]
-layout_mode = 0
-offset_left = 16.0
-offset_top = -66.0
-offset_right = 361.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.044
+anchor_top = -1.61
+anchor_right = 0.984
+offset_left = -0.148001
+offset_top = 0.0100021
+offset_right = -0.128021
 text = "SFX"
 label_settings = SubResource("LabelSettings_8w0g6")
 horizontal_alignment = 1

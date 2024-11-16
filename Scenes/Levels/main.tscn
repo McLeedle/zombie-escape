@@ -375,11 +375,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35713, 0.418262, -1.31581)
 light_color = Color(0.667014, 0.045052, 0.137928, 1)
 
 [node name="InfoText" type="Label" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = -1
+anchor_left = 0.581
 anchor_right = 1.0
-offset_left = -536.0
-offset_bottom = 118.0
+anchor_bottom = 0.164
+offset_left = 0.319946
+offset_bottom = -0.0800018
 grow_horizontal = 0
 text = "Find your Car Keys"
 label_settings = SubResource("LabelSettings_v46th")
@@ -414,11 +415,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="WinScreen"]
-layout_mode = 0
-offset_left = 780.0
-offset_top = 789.0
-offset_right = 1146.0
-offset_bottom = 964.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36
+anchor_top = 0.629
+anchor_right = 0.646
+anchor_bottom = 0.872
+offset_left = 0.199982
+offset_top = 0.119995
+offset_right = 0.119995
+offset_bottom = 0.159973
 
 [node name="PlayAgainButton" type="Button" parent="WinScreen/VBoxContainer"]
 layout_mode = 2
@@ -441,15 +447,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_521sk")
 
 [node name="Label" type="Label" parent="LoseScreen"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -287.5
-offset_top = -91.5
-offset_right = 287.5
-offset_bottom = 91.5
+anchors_preset = -1
+anchor_left = 0.275
+anchor_top = 0.373
+anchor_right = 0.725
+anchor_bottom = 0.627
+offset_left = 0.5
+offset_top = -0.0600281
+offset_right = -0.5
+offset_bottom = 0.059967
 grow_horizontal = 2
 grow_vertical = 2
 text = "Game Over!"
@@ -458,11 +464,15 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="LoseScreen"]
-layout_mode = 0
-offset_left = 773.0
-offset_top = 792.0
-offset_right = 1139.0
-offset_bottom = 967.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.359
+anchor_top = 0.625
+anchor_right = 0.645
+anchor_bottom = 0.868
+offset_left = 0.47998
+offset_right = 0.399963
+offset_bottom = 0.039978
 
 [node name="QPlayAgainButton" type="Button" parent="LoseScreen/VBoxContainer"]
 layout_mode = 2
