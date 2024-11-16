@@ -13,6 +13,21 @@ var settings = {
 	}
 }
 
+func ensure_directory_exists():
+	var dir = DirAccess.open("user://") # Open the user directory
+	if not dir.dir_exists("user://"):
+		dir.make_dir("user://") # Create the directory if it doesn't exist
+		
+func save_settings() -> void:
+	ensure_directory_exists() # Ensure the directory exists
+	
+	var file = FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
+	if file:
+		file.store_string(JSON.stringify(settings))
+		file.close()
+	else:
+		print("Failed to save settings file")
+
 func load_settings() -> void:
 	if FileAccess.file_exists(SETTINGS_PATH):
 		var file = FileAccess.open(SETTINGS_PATH, FileAccess.READ)
@@ -23,11 +38,3 @@ func load_settings() -> void:
 			file.close()
 		else:
 			print("Failed to load settings file.")
-
-func save_settings() -> void:
-	var file = FileAccess.open(SETTINGS_PATH, FileAccess.WRITE)
-	if file:
-		file.store_string(JSON.stringify(settings))
-		file.close()
-	else:
-		print("Failed to save settings file")
